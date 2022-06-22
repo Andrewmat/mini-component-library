@@ -4,41 +4,46 @@
  * interested, but otherwise you can rely on our docs to learn its
  * API / which props it takes.
  */
-import React from 'react';
-import styled from 'styled-components';
-import { Search, AtSign, ChevronDown } from 'react-feather';
+import React from "react"
+import styled from "styled-components"
+import { Search, AtSign, ChevronDown } from "react-feather"
 
 const icons = {
-  search: Search,
-  'at-sign': AtSign,
-  'chevron-down': ChevronDown,
-};
+	search: Search,
+	"at-sign": AtSign,
+	"chevron-down": ChevronDown,
+}
 
-const Icon = ({ id, size, strokeWidth = 1, ...delegated }) => {
-  const Component = icons[id];
+const Icon = ({
+	id,
+	size,
+	strokeWidth = 1,
+	...delegated
+}) => {
+	const Component = icons[id]
 
-  if (!Component) {
-    throw new Error(`No icon found for ID: ${id}`);
-  }
+	if (!Component) {
+		throw new Error(`No icon found for ID: ${id}`)
+	}
 
-  return (
-    <Wrapper
-      style={{
-        '--size': size + 'px',
-        '--stroke-width': strokeWidth + 'px',
-      }}
-      {...delegated}
-    >
-      <Component color="currentColor" size={size} />
-    </Wrapper>
-  );
-};
+	return (
+		<Wrapper
+			style={{
+				"--size": size + "px",
+				"--stroke-width": strokeWidth + "px",
+			}}
+			{...delegated}
+		>
+			<Component color="currentColor" size={size} />
+		</Wrapper>
+	)
+}
 
 const Wrapper = styled.div`
-  width: var(--size);
-  height: var(--size);
+	width: var(--size);
+	height: var(--size);
 
-  /*
+	/*
     OMG I'm doing that thing I've warned against doing!
     Unfortunately, react-feather doesn't make it possible to pass
     discrete styles to the nested SVG within its components.
@@ -50,10 +55,10 @@ const Wrapper = styled.div`
     react-feather JSX and try to work out where this SVG style
     is coming from.
   */
-  & > svg {
-    display: block;
-    stroke-width: var(--stroke-width);
-  }
-`;
+	& > svg {
+		display: block;
+		stroke-width: var(--stroke-width);
+	}
+`
 
-export default Icon;
+export default Icon
